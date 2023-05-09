@@ -1,0 +1,196 @@
+@font-face {
+    font-family: "Times Dot";
+    src: url("assets/times-dot/times-dot-italic.otf");
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Times Dot";
+    src: url("assets/times-dot/times-dot-roman.otf");
+    font-weight: 800;
+    font-style: normal;
+}
+
+a:link, a:visited , a:active {
+	color: rgb(185, 218, 180);
+	text-decoration: none;
+}
+
+* {
+	padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+*::-webkit-scrollbar {
+	display: none;
+    width: 0 !important;
+}
+
+html {
+	background: black;
+	color: rgb(185, 218, 180);
+	font-size: 1.5vw;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+	height: 95vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    z-index: 0;
+}
+
+.left {
+	border-right: 2px solid rgb(185, 218, 180);
+	overflow-y: scroll;
+	padding: 2rem;
+    width: 50%;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    transition: 0.25s;
+}
+
+.right {
+	padding: 2rem;
+    width: 50%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    transition: 0.25s;
+}
+
+
+.left::-webkit-scrollbar, .right::-webkit-scrollbar {
+    display: none;
+    width: 0 !important;
+}
+
+
+/*LEFT SIDE STYLING*/
+
+.heading {
+	font-family: Times Dot, Times New Roman;
+	font-size: 4vw;
+	line-height: 2.65rem;
+	font-style: normal;
+}
+
+
+.marquee {
+	display: flex;
+	justify-content: center;
+	font-family: Times Dot;
+	font-style: italic;
+  	font-size: 2.5vw;
+ 	position: relative;
+  	width: 100%;
+  	max-width: 100%;
+  	height: 2.75vw;
+  	overflow-x: hidden;
+  	overflow-y: hidden;
+  	border-top: 2px solid rgb(185, 218, 180);
+  	border-bottom: 2px solid rgb(185, 218, 180);
+
+}
+
+.track {
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 60s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+
+.location-container {
+    cursor: pointer;
+    font-size: 1.5vw;
+    display: grid;
+    grid-gap: 0.01rem;
+    grid-template-columns: 1fr 1fr;
+    font-family: Times Dot;
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+    border-top: 2px solid rgb(185, 218, 180);;
+}
+
+.location-address, .location-url {
+    display: none;
+}
+
+.location-address.active {
+    font-family: Courier;
+    font-size: 1.05vw;
+    display: inline-block;
+    width: 50%;
+    color: rgb(185, 218, 180);
+    padding-top: 0.5rem;
+}
+
+.location-url.active {
+    font-family: Courier;
+    font-size: 1.05vw;
+    display: inline-block;
+    width: 50%;
+    color: rgb(185, 218, 180);
+    padding-top: 0.75rem;
+}
+
+
+
+/*RIGHT SIDE STYLING*/
+
+iframe {
+    width: 100%;
+}
+
+.submit {
+    font-family: Times Dot;
+    font-style: italic;
+    font-size: 2.85vw;
+    margin-top: 0.75rem;
+    text-align: center;
+    transition: 0.75s;
+}
+
+.submit:hover {
+    text-decoration: underline;
+}
+
+
+
+/*FOOTER STYLING*/
+
+
+footer {
+    height: 2vh;
+    width: 100%;
+}
+
+.nav {
+    font-family: Times Dot, italic;
+    z-index: 10;
+    width: 96vw;
+    font-size: 1.5vw;
+    border-top: 2px solid rgb(185, 218, 180);
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    height: 2vh;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress {
+    display: flex;
+    justify-content: space-between;
+}

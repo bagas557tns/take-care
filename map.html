@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style2.css">
+	<title>Map & Index</title>
+</head>
+<body>
+<div id="container" class="container">
+<!-- start left side content -->
+	<div id="left" class="left">
+		<h1 class="heading">Social<br>Infrastructure<br>Map & Index*</h1>
+		<br>
+		<div class="marquee">
+			<div class="track">
+				<div class="content">Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! Click locations for more info! </div>
+			</div>	
+		</div>
+		<br>
+		<div class="data-container"></div>
+	</div>
+<!-- end left side content -->
+<!-- start right side content -->
+	<div id="right" class="right">
+		<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1yNPbOai52ukOM1Atvxt9nRr6M0_V8Zs&ehbc=2E312F" width="640" height="550"></iframe>
+		<div class="submit"><a href="https://airtable.com/invite/l?inviteId=invwaoJQe9Lya3wOp&inviteToken=af974686f4f780cdbbc060c8e028a62f9d9e0b393316a6879a298b62352ce7bc&utm_medium=email&utm_source=product_team&utm_content=transactional-alerts">Submit to the collection!</a></div>
+	</div>
+</div>
+<!-- start footer -->
+<footer>
+	<div class="nav">
+		<p>*Downtown Manhattan Edition</p>
+		<div class="progress">
+			<p>This site is always in progress & was last updated on May 9, 2023.</p>
+		</div>
+	</div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="airtable.browser.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+
+var Airtable = require("airtable");
+var base = new Airtable({ apiKey: "keydXjoJ8NXsE089J" }).base(
+  "appoiHepfxPIVPzvE"
+);
+
+base("social_infra_index").select({
+	view: "Grid view"
+}).eachPage(gotPageOfLocations, gotAllLocations);
+
+var locations = [];
+
+function gotPageOfLocations(records, fetchNextPage) {
+  console.log("gotPageOfLocations()");
+  locations.push(...records);
+  fetchNextPage();
+}
+
+function gotAllLocations(err) {
+  console.log("gotAllLocations()");
+
+  if (err) {
+    console.log("error loading data");
+    console.error(err);
+    return;
+  }
+
+  consoleLogLocations();
+  showLocations();
+}
+
+function consoleLogLocations() {
+  console.log("consoleLogLocations()");
+  locations.forEach((location) => {
+    console.log("Location:", location);
+  });
+}
+
+function showLocations() {
+  console.log("showLocations()");
+  locations.forEach((location, index) => { 
+
+  	var locationContainer = document.createElement("div");
+  	locationContainer.classList.add("location-container");
+  	document.querySelector(".data-container").append(locationContainer);
+
+  	var locationNumber = document.createElement("p");
+  	locationNumber.classList.add('location-number');
+  	locationNumber.innerHTML = location.fields.number;
+  	locationContainer.append(locationNumber);
+
+  	var locationName = document.createElement("p");
+  	locationName.classList.add('location-name');
+  	locationName.innerHTML = location.fields.name;
+  	locationContainer.append(locationName);
+
+  	var locationAddress = document.createElement("p");
+  	locationAddress.classList.add('location-address');
+  	locationAddress.innerHTML = location.fields.address;
+  	locationContainer.append(locationAddress);
+
+  	// var locationURL = document.createElement("a");
+  	// locationURL.classList.add('location-url');
+  	// locationURL.setAttribute('href', location.fields.url);
+  	// locationURL.innerHTML = "Get Directions →";
+  	// locationContainer.append(locationURL);
+
+  	locationContainer.addEventListener("click", function(){
+  		locationAddress.classList.toggle("active");
+  		locationURL.classList.toggle("active");
+  	})
+
+
+  });
+
+}
+
+
+
+
+
+
+	
+</script>
+</body>
+</html>
